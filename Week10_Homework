@@ -3,7 +3,7 @@ Decentralized Consensus
 Step 1: Independent verification of each transaction 
 Transactions creation and verification process:
     1.Collecting UTXO
-        oBitcoin full nodes track all available and spendable outputs, known as unspent transaction outputs, or UTXO.
+        Bitcoin full nodes track all available and spendable outputs, known as unspent transaction outputs, or UTXO.
     2.Providing the appropriate unlocking scripts
     3.Constructing new outputs assigned to a new owner
     4.Every bitcoin node that receives a transaction will verify the transaction.
