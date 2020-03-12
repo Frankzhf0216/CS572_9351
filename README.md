@@ -1,1 +1,50 @@
-# CS572_9351
+Decentralized Consensus
+
+Step 1: Independent verification of each transaction 
+Transactions creation and verification process:
+    1.Collecting UTXO
+        oBitcoin full nodes track all available and spendable outputs, known as unspent transaction outputs, or UTXO.
+    2.Providing the appropriate unlocking scripts
+    3.Constructing new outputs assigned to a new owner
+    4.Every bitcoin node that receives a transaction will verify the transaction.
+    
+Step2: Independent aggregation of transaction into candidate blocks
+    1.Maintain a local copy of the blockchain.
+    2.Listening for
+        new transactions
+        new blocks discovered by other nodes
+    3.Collect, validate, and relay new transactions just like any other bitcoin node.
+        After validating transactions, a bitcoin node will add them to the memory pool (transaction pool), where transactions await
+        until they can be included into a candidate block.
+    4.Trying to mine a new candidate block by finding a solution to the Proof-of-Work algorithm.
+        A block is called a candidate block because
+            It does not contain a valid Proof-of-Work and therefore, it is not yet a valid block
+            
+Step3: Independent verification of each block
+    Process done by every node
+        1.The node recieves newly solved blocks sent from the miners.
+        2.The node validates the newly solved blocks.
+            The block data structure is syntactically valid
+            The block header hash is less than the target (enforces the Proof-of-Work)
+            The block timestamp is less than two hours in the future (allowing for time errors)
+            The block size is within acceptable limits
+            The first transaction (and only the first) is a coinbase transaction
+                A dishonest miner could write themselves a coinbase transaction for a thousand bitcoin instead of the correct reward.
+                An invalid coinbase transaction would make the entire block invalid.
+            All transactions within the block are independetly verified.
+        3.The validated blocks are added to the blockchain.
+            The honest miners of the solved blocks can spend their earned rewards.
+            The dishonest miners will have their blocks rejected and
+                lose the reward
+                waste the effort expended to find a Proof-of-Work solution, thus incurring the cost of electricity without compensation.
+        4.The node propagate the valid blocks.
+        
+Step4: Independent selection of BlockChain
+    The final step in bitcoin’s decentralized consensus mechanism is
+        1.the assembly of blocks into chains
+        2.the selection of the chain with the most Proof-of-Work.
+    Only the new blocks satisfiying validation criteria are maintained by every node:
+        1.Main Blockchain: Those connected to the main blockchain
+        2.Secondary Blockchain: Those that form branches off the main blockchain
+        3.Orphan Blockcs: Those that do not have a known parent in the known chains
+        
